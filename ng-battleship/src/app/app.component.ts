@@ -42,9 +42,9 @@ export class AppComponent {
     }
     this.gameId = id;
     // init pusher
-    const pusher = new Pusher('APP_KEY', {
+    const pusher = new Pusher('APP_KEY`', {
       authEndpoint: '/pusher/auth',
-      cluster: 'eu'
+      cluster: 'us2'
     });
     // bind to relevant channels
     this.pusherChannel = pusher.subscribe(id);
