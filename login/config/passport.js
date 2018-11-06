@@ -71,6 +71,7 @@ passport.use(
       return done(null, false, req.flash('loginMessage', 'Wrong Password'));
 
       return done(null, rows[0]);
-    }
+    });
   })
-)
+);
+};
