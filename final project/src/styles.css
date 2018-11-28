@@ -30,3 +30,4 @@
 .battleship-tile:hover {
   cursor: pointer;
 }
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
