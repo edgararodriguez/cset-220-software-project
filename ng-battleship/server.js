@@ -11,10 +11,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // initialise Pusher.
 // Replace with your credentials from the Pusher Dashboard
 const pusher = new Pusher({
-     appId: 'YOUR_APP_ID',
-     key: 'YOUR_APP_KEY',
-     secret: 'YOUR_APP_SECRET',
-     cluster: 'YOUR_APP_CLUSTER',
+     appId: 'INSERT_APPID_HERE',
+     key: 'INSERT_KEY_HERE',
+     secret: 'INSERT_SECRET',
+     cluster: 'us2',
      encrypted: true
    });
 

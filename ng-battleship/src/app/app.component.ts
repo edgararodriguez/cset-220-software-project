@@ -42,7 +42,7 @@ export class AppComponent {
     }
     this.gameId = id;
     // init pusher
-    const pusher = new Pusher('APP_KEY`', {
+    const pusher = new Pusher('INSTERT-KEY-HERE', {
       authEndpoint: '/pusher/auth',
       cluster: 'us2'
     });
