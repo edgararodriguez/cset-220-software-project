@@ -6,6 +6,9 @@
   "scripts": {
     "nodejs_login": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+  "node": "9.8.0"
+},
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.16.1",
