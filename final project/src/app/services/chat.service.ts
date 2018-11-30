@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PusherService } from './pusher.service';
-import { HttpClient } from '@angular/http/src';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {tap} from 'rxjs/operators';
 

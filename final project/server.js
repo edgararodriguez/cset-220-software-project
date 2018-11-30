@@ -1,49 +1,62 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const Pusher = require('pusher');
-const crypto = require("crypto");
+const express = require('express')
+const bodyParser = require('body-parser')
+const Pusher = require('pusher')
+const cors = require('cors')
+require('dotenv').config()
+const shortId = require('shortid')
+const dialogFlow = require('./dialogFlow')
 
-const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+const app = express()
+app.use(cors())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
-// initialise Pusher.
-// Replace with your credentials from the Pusher Dashboard
 const pusher = new Pusher({
-     appId: 'INSERT_APPID_HERE',
-     key: 'INSERT_KEY_HERE',
-     secret: 'INSERT_SECRET',
-     cluster: 'us2',
-     encrypted: true
-   });
+  appId: process.env.PUSHER_APP_ID,
+  key: process.env.PUSHER_APP_KEY,
+  secret: process.env.PUSHER_APP_SECRET,
+  cluster: 'us2',
+  encrypted: true
+})
 
-   // to serve our JavaScript, CSS and index.html
-   app.use(express.static('./dist/'));
+app.post('/message', async (req, res) => {
+  // simulate actual db save with id and createdAt added
+  const chat = {
+    ...req.body,
+    id: shortId.generate(),
+    createdAt: new Date().toISOString()
+  }
+  // trigger this update to our pushers listeners
+  pusher.trigger('chat-group', 'chat', chat)
 
-   // CORS
-   app.all('/*', function(req, res, next) {
-     res.header("Access-Control-Allow-Origin", "*");
-     res.header("Access-Control-Allow-Headers", "*");
-     next();
-   });
+  // check if this message was invoking our bot, /bot
+  if (chat.message.startsWith('/bot')) {
+    const message = chat.message.split('/bot')[1]
+    const response = await dialogFlow.send(message)
+    pusher.trigger('chat-group', 'chat', {
+      message: `@${chat.displayName} ${
+        response.data.result.fulfillment.speech
+      }`,
+      displayName: 'Bot User',
+      email: 'bot@we.com',
+      createdAt: new Date().toISOString(),
+      id: shortId.generate()
+    })
+  }
 
-   // endpoint for authenticating client
-   app.post('/pusher/auth', function(req, res) {
-     let socketId = req.body.socket_id;
-     let channel = req.body.channel_name;
-     let presenceData = {
-       user_id: crypto.randomBytes(16).toString("hex")
-     };
-     let auth = pusher.authenticate(socketId, channel, presenceData);
-     res.send(auth);
-   });
+  res.send(chat)
+})
 
-   // direct all other requests to the built app view
-   app.get('*', (req, res) => {
-     res.sendFile(path.join(__dirname, './dist/index.html'));
-   });
+app.post('/join', (req, res) => {
+  const chat = {
+    ...req.body,
+    id: shortId.generate(),
+    type: 'joined',
+    createdAt: new Date().toISOString()
+  }
+  // trigger this update to our pushers listeners
+  pusher.trigger('chat-group', 'chat', chat)
+  res.send(chat)
+})
 
-   // start server
-   var port = process.env.PORT || 3000;
-   app.listen(port, () => console.log('Listening at http://localhost:3000'));
+app.listen(process.env.PORT || 2000, () => console.log('Listening at 2000'))

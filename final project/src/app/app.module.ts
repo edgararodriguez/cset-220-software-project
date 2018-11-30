@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ChatService } from './services/chat.service';
-import { PusherService } from './services/pusher.service';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { PusherService } from './services/pusher.service';
+import { ChatService } from './services/chat.service';
 import { MyDetailsComponent } from './my-details/my-details.component';
 import { ChatComponent } from './chat/chat.component';
 
@@ -19,9 +18,8 @@ import { ChatComponent } from './chat/chat.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
-     ToastModule.forRoot()
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [ChatService, PusherService],
   bootstrap: [AppComponent]
