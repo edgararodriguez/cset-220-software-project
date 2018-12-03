@@ -8,7 +8,7 @@ export class PusherService {
 private _pusher: any;
 
 constructor() {
-  this._pusher = new Pusher('INSERT KEY HERE', {
+  this._pusher = new Pusher('Pusher Key', {
     cluster: 'us2',
     encrypted: true
   });
