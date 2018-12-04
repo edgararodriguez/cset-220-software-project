@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { PusherService } from './services/pusher.service';
 import { ChatService } from './services/chat.service';
@@ -16,6 +16,7 @@ import { ChatComponent } from './chat/chat.component';
     ChatComponent
   ],
   imports: [
+    ToastModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpClientModule,
