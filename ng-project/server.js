@@ -58,5 +58,31 @@ app.post('/join', (req, res) => {
   pusher.trigger('chat-group', 'chat', chat)
   res.send(chat)
 })
+// BATTLESHIP////
+// to serve our JavaScript, CSS and index.html
+app.use(express.static('./dist/'));
 
+// CORS
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+});
+
+// endpoint for authenticating client
+app.post('/pusher/auth', function(req, res) {
+  let socketId = req.body.socket_id;
+  let channel = req.body.channel_name;
+  let presenceData = {
+    user_id: crypto.randomBytes(16).toString("hex")
+  };
+  let auth = pusher.authenticate(socketId, channel, presenceData);
+  res.send(auth);
+});
+
+// direct all other requests to the built app view
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './dist/index.html'));
+});
+/////BATTLESHIP END////
 app.listen(process.env.PORT || 2000, () => console.log('Listening at 2000'))
