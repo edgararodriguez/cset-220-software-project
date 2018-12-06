@@ -4,6 +4,8 @@ const Pusher = require('pusher')
 const cors = require('cors')
 require('dotenv').config()
 const shortId = require('shortid')
+const path = require('path')
+const crypto = require("crypto")
 const dialogFlow = require('./dialogFlow')
 
 const app = express()
@@ -58,9 +60,9 @@ app.post('/join', (req, res) => {
   pusher.trigger('chat-group', 'chat', chat)
   res.send(chat)
 })
-// BATTLESHIP////
+//battleship
 // to serve our JavaScript, CSS and index.html
-app.use(express.static('./dist/'));
+app.use(express.static('./dist/botAndPusher/'));
 
 // CORS
 app.all('/*', function(req, res, next) {
@@ -82,7 +84,8 @@ app.post('/pusher/auth', function(req, res) {
 
 // direct all other requests to the built app view
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './dist/index.html'));
+  res.sendFile(path.join(__dirname, './dist/botAndPusher/index.html'));
 });
-/////BATTLESHIP END////
+
+//battleship
 app.listen(process.env.PORT || 2000, () => console.log('Listening at 2000'))
