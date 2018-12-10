@@ -21,22 +21,22 @@ import { LoginComponent } from './login';
     AppComponent,
     MyDetailsComponent,
     ChatComponent,
-    routing
+    AlertComponent,
+    HomeComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     ToastrModule.forRoot(),
     BrowserModule,
     FormsModule,
-    HomeComponent,
-    RegisterComponent,
-    LoginComponent,
     HttpClientModule,
-    AlertComponent,
+    routing,
     ReactiveFormsModule
   ],
   providers: [ChatService, PusherService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
