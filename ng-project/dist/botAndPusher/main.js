@@ -1692,7 +1692,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 var environment = {
     production: false,
-    apiUrl: 'http://localhost:4000'
+    apiUrl: 'https://whispering-mountain-28600.herokuapp.com/'
 };
 /*
  * For easier debugging in development mode, you can import the following file
