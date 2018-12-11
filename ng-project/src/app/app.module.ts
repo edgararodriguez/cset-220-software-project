@@ -11,7 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { routing }        from './app.routing';
 import { AlertComponent } from './_components';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { HomeComponent } from './home';
+import { BattleshipComponent } from './battleship';
 import { RegisterComponent } from './register';
 import { LoginComponent } from './login';
 
@@ -22,7 +22,7 @@ import { LoginComponent } from './login';
     MyDetailsComponent,
     ChatComponent,
     AlertComponent,
-    HomeComponent,
+    BattleshipComponent,
     RegisterComponent,
     LoginComponent
   ],
