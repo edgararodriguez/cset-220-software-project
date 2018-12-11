@@ -3,6 +3,9 @@ import { ChatService } from './services/chat.service';
 import { ToastrService } from 'ngx-toastr';
 import { BoardService } from './board.service'
 import { Board } from './board'
+import { Router } from '@angular/router';
+import { AuthenticationService } from './_services';
+import { User } from './_models';
 // set game constants
 declare const Pusher: any;
 const NUM_PLAYERS = 2;
@@ -21,14 +24,17 @@ export class AppComponent {
   player: number = 0;
   players: number = 0;
   gameId: string;
+  currentUser: User;
 
       constructor(
+        private router: Router,
         public chatService: ChatService,
         private toastr: ToastrService,
         private _vcr: ViewContainerRef,
         private boardService: BoardService,
+        private authenticationService: AuthenticationService
       ) {
-
+        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
         this.createBoards();
         this.initPusher();
         this.listenForChanges();
@@ -162,5 +168,9 @@ export class AppComponent {
    //checks if player is a valid player for the game
      get validPlayer(): boolean {
        return (this.players >= NUM_PLAYERS) && (this.player < NUM_PLAYERS);
+     }
+     logout() {
+         this.authenticationService.logout();
+         this.router.navigate(['/login']);
      }
    }
