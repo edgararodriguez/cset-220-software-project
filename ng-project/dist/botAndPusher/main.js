@@ -1599,7 +1599,7 @@ var ChatService = /** @class */ (function () {
     function ChatService(_pusherService, _http) {
         this._pusherService = _pusherService;
         this._http = _http;
-        this._endPoint = 'http://localhost:2000'; // normally you use environment.ts
+        this._endPoint = 'https://battleshipchat.herokuapp.com'; // normally you use environment.ts
         this._channel = this._pusherService.getPusher().subscribe('chat-group');
     }
     ChatService.prototype.join = function (param) {

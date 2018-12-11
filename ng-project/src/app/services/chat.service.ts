@@ -9,7 +9,7 @@ import {tap} from 'rxjs/operators';
 })
 export class ChatService {
   user: {displayName: string, email: string};
-  private _endPoint = 'http://localhost:2000'; // normally you use environment.ts
+  private _endPoint = 'https://battleshipchat.herokuapp.com'; // normally you use environment.ts
   private _channel: any;
 
   constructor(private _pusherService: PusherService, private _http: HttpClient) {
