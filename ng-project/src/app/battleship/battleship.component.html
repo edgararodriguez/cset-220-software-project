@@ -10,13 +10,13 @@
       <!-- shows when a player has won the game -->
       <section *ngIf="winner" class="notification is-success has-text-centered" style="color:white">
         <h1>Player {{ winner.player.id }} has won the game!</h1>
-        <h5>Click <a href="{{ gameUrl }}">here</a> to start a new game.</h5>
+        <h5>Click <a href="battleship{{ gameUrl }}">here</a> to start a new game.</h5>
       </section>
 
       <!-- shows while waiting for 2nd user to join -->
       <div *ngIf="players < 2">
         <h2>Waiting for 2nd user to join...</h2>
-        <h3 class="subtitle is-6">You can invite them with this link: {{ gameUrl }}?id={{ gameId }}. You can also open <a href="{{ gameUrl }}?id={{ gameId }}" target="_blank">this link</a> in a new browser, to play all by yourself.</h3>
+        <h3 class="subtitle is-6">You can invite them with this link: battleshipchat.herokuapp.com/battleship{{ gameUrl }}?id={{ gameId }}. You can also copy the url in a new browser, to play all by yourself.</h3>
       </div>
 
       <!-- loops through the boards array and displays the player and board tiles -->
