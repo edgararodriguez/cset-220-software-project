@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from './_services';
 import { User } from './_models';
 
-@Component({ selector: 'app-root', templateUrl: 'app.component2.html' })
+@Component({ selector: 'app-root', templateUrl: 'authentication.component.html' })
 export class AppComponent {
     currentUser: User;
 
