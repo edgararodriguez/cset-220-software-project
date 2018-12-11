@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://whispering-mountain-28600.herokuapp.com/'
+  apiUrl: 'https://whispering-mountain-28600.herokuapp.com'
 };
 
 /*
