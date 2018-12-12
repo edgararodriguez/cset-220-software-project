@@ -1,4 +1,4 @@
-##Vulnerabilities
+## Vulnerabilities
 
 1. Users trying to take others information
 
@@ -10,7 +10,7 @@
 
 5. Outdated Vulnerable dependencies
 
-##Solutions
+## Solutions
 
 1. Data is secure and hashed
 

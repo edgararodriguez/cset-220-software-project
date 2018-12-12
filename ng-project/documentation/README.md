@@ -17,7 +17,7 @@ For my software project for this semester I was assigned to make a application w
 7. API Implementation
 8. Data Architecture
 
-##Approach
+## Approach
 
 This project was written in Node.Js and angular-CLI. The reason I chose angular is because I wanted to expand my knowledge. I was a complete stranger to angular and I felt that it would be a good challenge for me to test myself with a hefty project done with angular. This project was dependent on a lot of modules. It was dependent on things such as angular, axios, body-parser, bootstrap, bulma, core-js, cors, dotenv, express, jquery, ngx-toastr, pusher, pusher-js, rxjs, rxjs-compat, shortid, toastr, zone.js, typescript, protractor, codelyzer, and karma for unit testing. These dependencies were used to layout my front end and to allow my backend to bring things together so they can be displayed in the front end. I used mongodb and Node.JS for my api. Most of my styles were done using bootstrap, I was going for more of a simplistic view for my project.
 
